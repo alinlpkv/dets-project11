@@ -1,0 +1,44 @@
+<p></p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1> Датчики </h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="padCard" *ngFor="let item of arrDet; let b_index=index; let item_last=last;"
+    style="margin: 20px; float:left">
+    <ng-container *ngIf="item.status==true; else elseTemplate">
+      <div class="card text-white bg-success mb-3" style="width: 12rem; ">
+        <div class="card-header" style="text-align: center;">{{item.id}} </div>
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center;">Name: {{item.name}} </h5>
+          <!-- <p>status:{{item.status}}</p> -->
+          <button class="btn btn-warning" (click)="deleteDet(b_index)">Delete</button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="card text-white bg-danger mb-3" style="width: 12rem;">
+        <div class="card-header" style="text-align: center;">{{item.id}} </div>
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center;">Name: {{item.name}}</h5>
+          <!-- <p>status:{{item.status}}</p>  -->
+          <button class="btn btn-warning" (click)="deleteDet(b_index)">Delete</button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<div class="w-100">
+  <div class="form-group">
+    <input type="number" class="form-control" #idInput placeholder="Введите id нового датчика" />
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" #nameInput placeholder="Введите имя нового датчика" />
+  </div>
+  <p>
+    <button class="btn btn-primary" (click)="getData()">Create</button>
+  </p>
